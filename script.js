@@ -24,30 +24,54 @@ const gameBoard = (() => {
     //Add event listeners to each square
     Array.from(boardSquares.children).forEach((square, index) => {
         square.addEventListener('click', () => {
-            //show current player marker
-            square.classList.add(game.currentPlayer.marker);
-            square.setAttribute('data', game.currentPlayer.marker);
-            //update array
-            board[index] = game.currentPlayer.marker;
-            //remove event listener from marked square
-            square.getElementsByClassName.pointerEvents = "none";
-            //update emptySquares
-            game.emptySquares -= 1;
-            //check winner
-            game.checkWinner();
-            //check emptySquares
-            if (game.gameWon == false) {
-                if (game.emptySquares > 0) {
-                    game.alertNext();
-                    game.nextPlayer();
-                } else if (game.emptySquares == 0) {
-                    game.alertTie();
+            
+            if (board[index] === "") {
+                //show current player marker
+                square.classList.add(game.currentPlayer.marker);
+                square.setAttribute('data', game.currentPlayer.marker);
+                //update array
+                board[index] = game.currentPlayer.marker;
+                //remove event listener from marked square
+                square.getElementsByClassName.pointerEvents = "none";
+                //update emptySquares
+                game.emptySquares -= 1;
+                //check winner
+                game.checkWinner();
+                //check emptySquares
+                if (game.gameWon == false) {
+                    if (game.emptySquares > 0) {
+                        game.alertNext();
+                        game.nextPlayer();
+                    } else if (game.emptySquares == 0) {
+                        game.alertTie();
+                    }
                 }
+            } else {
+                alert("That square is already marked!");
             }
+            
         })
     });
+
+    //Restart Event Listener
+    const resetButton = document.querySelector("button");
+    const square = document.querySelector(".square");
+    
+    resetButton.addEventListener('click', () => {
+        for (i = 0; i < board.length; i++) {
+            board[i] = "";
+            square.classList.remove(game.currentPlayer.marker);
+            square.removeAttribute('data', game.currentPlayer.marker);
+        }
+        
+        game.emptySquares = 9;
+        gameWon = false;
+        playerOneName = prompt("What is your name Player One?");
+        playerTwoName = prompt("What is your name Player Two?");
+    });
+
     return {
-        board
+        board,
     };
 })();
 
@@ -56,19 +80,27 @@ const gameBoard = (() => {
 //game object - module
 const game = (() => {
 
-    //Declare players
-    const playerOne = newPlayer("Player One", "X");
-    const playerTwo = newPlayer("Player Two", "O");
+    //Get player names
+    const playerOneName = prompt("What is your name Player One?");
+    const playerTwoName = prompt("What is your name Player Two?");
+    const playerOne = newPlayer(`${playerOneName}`, "X");
+    const playerTwo = newPlayer(`${playerTwoName}`, "O");
 
+   
     //Starting point
     let currentPlayer = playerOne;
     let emptySquares = 9;
     let gameWon = false;
 
+     //Update starting infoBox with player name
+     const infoSpan = document.querySelector("span");
+     infoSpan.innerHTML = `${playerOneName}`;
+ 
+
     //Selectors
 
-    let infoBox = document.querySelector(".infoBox");
-    let playerName = document.querySelector(".playerName");
+    const infoBox = document.querySelector(".infoBox");
+    const playerName = document.querySelector(".playerName");
 
     //Winning conditions (Array of arrays)
 
@@ -94,7 +126,7 @@ const game = (() => {
     }
     //Alert next player
     function alertNext () {
-        this.currentPlayer === playerOne ? playerName.textContent = "Player Two" : playerName.textContent = "Player 1";
+        this.currentPlayer === playerOne ? playerName.textContent = `${playerTwoName}` : playerName.textContent = `${playerOneName}`;
     }
 
     //Next player
