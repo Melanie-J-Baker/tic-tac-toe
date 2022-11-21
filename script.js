@@ -49,26 +49,37 @@ const gameBoard = (() => {
             } else {
                 alert("That square is already marked!");
             }
-            
         })
     });
 
-    //Restart Event Listener
+    /*Restart Event Listener
     const resetButton = document.querySelector("button");
     const square = document.querySelector(".square");
     
     resetButton.addEventListener('click', () => {
-        for (i = 0; i < board.length; i++) {
-            board[i] = "";
+
+        playerOneName = prompt("What is your name Player One?");
+        playerTwoName = prompt("What is your name Player Two?");
+        playerOne = newPlayer(`${playerOneName}`, "X");
+        playerTwo = newPlayer(`${playerTwoName}`, "O");
+        currentPlayer = playerOne;
+
+        Array.from(boardSquares.children).forEach((square, index) => {
             square.classList.remove(game.currentPlayer.marker);
             square.removeAttribute('data', game.currentPlayer.marker);
-        }
+            board[index] = "";
+        })
         
         game.emptySquares = 9;
         gameWon = false;
-        playerOneName = prompt("What is your name Player One?");
-        playerTwoName = prompt("What is your name Player Two?");
-    });
+       
+       
+    });*/
+
+    const resetButton = document.querySelector("button");
+    resetButton.addEventListener('click', () => {
+        window.location.reload();
+    })
 
     return {
         board,

@@ -20,6 +20,7 @@ header {
     text-align: center;
     color: white;
     padding: 20px;
+    align-items: center;
 }
 
 h1 {
@@ -75,4 +76,14 @@ h1 {
     background-image: url("Images/circle-outline.png");
     background-repeat: no-repeat;
     background-position: center;
+}
+
+button {
+    border: none;
+    border-radius: 7px;
+    color: white;
+    background-color: darkred;
+    margin-top: 20px;
+    padding: 7px 15px;
+    font-size: 1rem;
 }
