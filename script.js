@@ -52,30 +52,6 @@ const gameBoard = (() => {
         })
     });
 
-    /*Restart Event Listener
-    const resetButton = document.querySelector("button");
-    const square = document.querySelector(".square");
-    
-    resetButton.addEventListener('click', () => {
-
-        playerOneName = prompt("What is your name Player One?");
-        playerTwoName = prompt("What is your name Player Two?");
-        playerOne = newPlayer(`${playerOneName}`, "X");
-        playerTwo = newPlayer(`${playerTwoName}`, "O");
-        currentPlayer = playerOne;
-
-        Array.from(boardSquares.children).forEach((square, index) => {
-            square.classList.remove(game.currentPlayer.marker);
-            square.removeAttribute('data', game.currentPlayer.marker);
-            board[index] = "";
-        })
-        
-        game.emptySquares = 9;
-        gameWon = false;
-       
-       
-    });*/
-
     const resetButton = document.querySelector("button");
     resetButton.addEventListener('click', () => {
         window.location.reload();
