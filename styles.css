@@ -12,11 +12,7 @@ body {
     max-width: 60rem;
     margin: 0 auto;
     height: 100vh;
-<<<<<<< HEAD
-    background-image: url("Images/jon-tyson-eTjX8xc1in8-unsplash.jpg");
-=======
     background-image: url("jon-tyson-eTjX8xc1in8-unsplash.jpg");
->>>>>>> 5548861c513d161baa916ff070f890c789828cf0
     background-size: cover;
 }
 
@@ -90,8 +86,4 @@ button {
     margin-top: 20px;
     padding: 7px 15px;
     font-size: 1rem;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 5548861c513d161baa916ff070f890c789828cf0
